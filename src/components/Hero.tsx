@@ -1,5 +1,7 @@
 import heroBg from "@/assets/hero-bg.jpg";
+import profileImg from "@/assets/profile.png";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+
 
 export default function Hero() {
   return (
@@ -32,6 +34,24 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 container px-4 md:px-8 flex flex-col items-center text-center">
+
+        {/* Profile Picture */}
+        <div className="relative mb-8 animate-fade-in">
+          {/* Outer ring pulse */}
+          <div className="absolute inset-0 rounded-full border-2 border-foreground/20 animate-ping opacity-30 scale-110" />
+          {/* Ring */}
+          <div className="relative w-28 h-28 md:w-32 md:h-32 rounded-full p-0.5 bg-gradient-to-br from-foreground/30 via-foreground/10 to-foreground/30">
+            <div className="w-full h-full rounded-full overflow-hidden border-2 border-background">
+              <img
+                src={profileImg}
+                alt="Muhammad Hasaan"
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+          </div>
+          {/* Available dot */}
+          <span className="absolute bottom-1 right-1 w-4 h-4 rounded-full border-2 border-background shadow-sm" style={{ backgroundColor: "#22c55e" }} />
+        </div>
 
         {/* Badge */}
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-foreground/20 bg-foreground/5 mb-8 animate-fade-in">
