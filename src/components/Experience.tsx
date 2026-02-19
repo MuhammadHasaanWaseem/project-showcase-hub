@@ -2,15 +2,26 @@ import { Briefcase, MapPin, Calendar } from "lucide-react";
 
 const experiences = [
   {
+    role: "Full Stack React Native Developer",
+    company: "FOX IT",
+    location: "Lahore, Pakistan",
+    period: "2022 – Present",
+    points: [
+      "Developed full-stack solutions using React, React Native, and Firebase Node.js with production-ready user interfaces.",
+      "Built and deployed multiple projects prioritizing performance and user experience across platforms.",
+    ],
+    current: true,
+  },
+  {
     role: "Front-End Software Engineer",
     company: "Open Malo Technologies",
     location: "Rajokot, India (Remote)",
-    period: "2024 – Present",
+    period: "2024",
     points: [
       "Spearheaded development of a cross-platform mobile app for Android & iOS using React Native with scalable architecture and reusable components.",
       "Integrated third-party and RESTful APIs securely, collaborated closely with the team to deliver clean, well-structured code.",
     ],
-    current: true,
+    current: false,
   },
   {
     role: "Full Stack Developer",
@@ -20,17 +31,6 @@ const experiences = [
     points: [
       "Led end-to-end development using React, React Native, and Node.js — delivering production-ready UIs and scalable backends.",
       "Utilized Docker for containerization ensuring consistent development and streamlined deployment workflows.",
-    ],
-    current: false,
-  },
-  {
-    role: "Full Stack React Native Developer",
-    company: "724-One",
-    location: "Lahore, Pakistan",
-    period: "2022 – 2023",
-    points: [
-      "Developed full-stack solutions using React, React Native, and Firebase Node.js with production-ready user interfaces.",
-      "Built and deployed multiple projects prioritizing performance and user experience across platforms.",
     ],
     current: false,
   },
