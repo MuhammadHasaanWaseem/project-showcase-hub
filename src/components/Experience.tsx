@@ -15,8 +15,8 @@ const experiences = [
   {
     role: "Front-End Software Engineer",
     company: "724.one",
-    location: "Rajokot, India (Remote)",
-    period: "2024",
+    location: "Lahore, Pakistan ",
+    period: "2025-2026",
     points: [
       "Spearheaded development of a cross-platform mobile app for Android & iOS using React Native with scalable architecture and reusable components.",
       "Integrated third-party and RESTful APIs securely, collaborated closely with the team to deliver clean, well-structured code.",
