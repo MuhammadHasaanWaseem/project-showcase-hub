@@ -7,6 +7,7 @@ import ebibleImg from "@/assets/project-ebible.jpg";
 import judgedImg from "@/assets/project-judged.jpg";
 import gasioImg from "@/assets/project-gasio.jpg";
 import shopifyImg from "@/assets/project-shopify.jpg";
+import newImg from "@/assets/new.png";
 import { useEffect, useRef, useState } from "react";
 
 type PlatformTag = "Web" | "iOS" | "Android" | "Shopify";
@@ -82,6 +83,14 @@ const projects: Project[] = [
     image: shopifyImg,
     tags: ["Shopify", "Liquid", "CSS", "UI Design"],
     platforms: ["Shopify"],
+  },
+  {
+    title: "Picfu",
+    description: "Photographer portfolio and showcase. Clean, visual presentation for photography work.",
+    image: newImg,
+    tags: ["Web", "Portfolio", "Photography"],
+    platforms: ["Web"],
+    liveUrl: "https://picfu.vercel.app/",
   },
 ];
 
@@ -221,77 +230,78 @@ export default function Projects() {
           className="flex will-change-transform"
           style={{ gap: `${gap}px`, paddingLeft: "2rem", paddingRight: "2rem" }}
         >
-          {loopedProjects.map((project, index) => (
-            <div
-              key={`${project.title}-${index}`}
-              className="group relative rounded-2xl overflow-hidden border border-border bg-card hover:border-foreground/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer shrink-0"
-              style={{ width: `${cardWidth}px` }}
-            >
-              {/* Image */}
-              <div className="relative overflow-hidden" style={{ height: "220px" }}>
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+          {loopedProjects.map((project, index) => {
+            const CardWrapper = project.liveUrl ? "a" : "div";
+            const wrapperProps = project.liveUrl
+              ? { href: project.liveUrl, target: "_blank", rel: "noopener noreferrer" }
+              : {};
+            return (
+              <CardWrapper
+                key={`${project.title}-${index}`}
+                {...wrapperProps}
+                className="group relative rounded-2xl overflow-hidden border border-border bg-card hover:border-foreground/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer shrink-0 block no-underline text-inherit"
+                style={{ width: `${cardWidth}px` }}
+              >
+                {/* Image */}
+                <div className="relative overflow-hidden" style={{ height: "220px" }}>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
 
-                {/* Platform badges */}
-                <div className="absolute top-3 left-3 flex gap-1.5">
-                  {project.platforms.map((p) => (
-                    <span
-                      key={p}
-                      className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full border text-xs font-medium ${platformColor(p)}`}
-                    >
-                      {platformIcon(p)}
-                      {p}
-                    </span>
-                  ))}
-                </div>
+                  {/* Platform badges */}
+                  <div className="absolute top-3 left-3 flex gap-1.5">
+                    {project.platforms.map((p) => (
+                      <span
+                        key={p}
+                        className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full border text-xs font-medium ${platformColor(p)}`}
+                      >
+                        {platformIcon(p)}
+                        {p}
+                      </span>
+                    ))}
+                  </div>
 
-                {/* Live link */}
-                {project.liveUrl && (
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => e.stopPropagation()}
-                    className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-all duration-200 hover:scale-110 shadow-md"
-                  >
-                    <ExternalLink size={13} />
-                  </a>
-                )}
-              </div>
-
-              {/* Content */}
-              <div className="p-5">
-                <h3 className="font-bold text-base text-foreground mb-2 group-hover:text-foreground/80 transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-2">
-                  {project.description}
-                </p>
-
-                {/* Tech Tags */}
-                <div className="flex flex-wrap gap-1.5">
-                  {project.tags.slice(0, 4).map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs font-mono group-hover:bg-foreground/8 transition-colors"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                  {project.tags.length > 4 && (
-                    <span className="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs font-mono">
-                      +{project.tags.length - 4}
+                  {/* Live link icon */}
+                  {project.liveUrl && (
+                    <span className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-md pointer-events-none">
+                      <ExternalLink size={13} />
                     </span>
                   )}
                 </div>
-              </div>
-            </div>
-          ))}
+
+                {/* Content */}
+                <div className="p-5">
+                  <h3 className="font-bold text-base text-foreground mb-2 group-hover:text-foreground/80 transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-2">
+                    {project.description}
+                  </p>
+
+                  {/* Tech Tags */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tags.slice(0, 4).map((tag) => (
+                      <span
+                        key={tag}
+                        className="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs font-mono group-hover:bg-foreground/8 transition-colors"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                    {project.tags.length > 4 && (
+                      <span className="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs font-mono">
+                        +{project.tags.length - 4}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </CardWrapper>
+            );
+          })}
         </div>
       </div>
 
