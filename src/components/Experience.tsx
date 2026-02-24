@@ -2,8 +2,8 @@ import { Briefcase, MapPin, Calendar } from "lucide-react";
 
 const experiences = [
   {
-    role: "Full Stack React Native Developer",
-    company: "FOX IT",
+    role: "Senior React native Developer",
+    company: "Tectsoft",
     location: "Lahore, Pakistan",
     period: "2022 – Present",
     points: [
@@ -14,7 +14,7 @@ const experiences = [
   },
   {
     role: "Front-End Software Engineer",
-    company: "Open Malo Technologies",
+    company: "724.one",
     location: "Rajokot, India (Remote)",
     period: "2024",
     points: [
@@ -26,6 +26,17 @@ const experiences = [
   {
     role: "Full Stack Developer",
     company: "Upvave",
+    location: "Lahore, Pakistan",
+    period: "2023 – 2024",
+    points: [
+      "Led end-to-end development using React, React Native, and Node.js — delivering production-ready UIs and scalable backends.",
+      "Utilized Docker for containerization ensuring consistent development and streamlined deployment workflows.",
+    ],
+    current: false,
+  },
+  {
+    role: "Full Stack Developer",
+    company: "Open Malo Technologies",
     location: "Lahore, Pakistan",
     period: "2023 – 2024",
     points: [
