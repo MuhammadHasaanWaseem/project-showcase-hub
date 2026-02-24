@@ -77,8 +77,8 @@ export default function Skills() {
         {/* Stats */}
         <div className="mt-16 max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-5 text-center">
           {[
-            { value: "8+", label: "Production Apps", desc: "Shipped to App Store & Play Store" },
-            { value: "3+", label: "Companies", desc: "Remote & on-site experience" },
+            { value: "10+", label: "Production Apps", desc: "Shipped to App Store & Play Store" },
+            { value: "5+", label: "Companies", desc: "Remote & on-site experience" },
             { value: "3.5", label: "CGPA", desc: "BS Software Engineering" },
           ].map((stat, i) => (
             <div
