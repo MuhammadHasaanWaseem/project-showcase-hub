@@ -59,8 +59,8 @@ const projects: Project[] = [
     description: "Scripture reading and study app for iOS with bookmarking, notes, search, and offline access to Bible content.",
     image: ebibleImg,
     tags: ["React Native", "iOS", "Firebase", "Offline Storage"],
-    platforms: ["iOS"],
-    liveUrl: "https://apps.apple.com/",
+    platforms: ["Android", "iOS"],
+    liveUrl: "https://play.google.com/store/apps/details?id=com.ebiblija",
   },
   {
     title: "Judged",
@@ -92,6 +92,7 @@ const projects: Project[] = [
     platforms: ["Web"],
     liveUrl: "https://picfu.vercel.app/",
   },
+  
 ];
 
 const platformColor = (platform: PlatformTag) =>
