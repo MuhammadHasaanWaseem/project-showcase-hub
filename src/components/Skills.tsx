@@ -1,44 +1,30 @@
-const skillCategories = [
-  {
-    label: "Mobile",
-    icon: "📱",
-    skills: ["React Native CLI", "Expo Router", "NativeWind", "Reanimated", "iOS Deployment", "Android", "IAP", "RevenueCat"],
-  },
-  {
-    label: "Frontend",
-    icon: "🖥️",
-    skills: ["React", "TypeScript", "JavaScript", "Tailwind CSS", "TanStack Query", "Redux", "Context API"],
-  },
-  {
-    label: "Backend",
-    icon: "⚙️",
-    skills: ["Node.js", "Express.js", "PostgreSQL", "Firebase", "Supabase", "Drizzle ORM", "Prisma", "REST APIs"],
-  },
-  {
-    label: "AI & APIs",
-    icon: "🤖",
-    skills: ["OpenAI", "Google Maps API", "Stripe", "Clerk", "Logto", "PostHog"],
-  },
-  {
-    label: "DevOps",
-    icon: "🚀",
-    skills: ["Docker", "GitHub Actions", "Git", "JMeter", "Jira", "ClickUp"],
-  },
-  {
-    label: "Learning",
-    icon: "📚",
-    skills: ["Java", "Spring Boot"],
-  },
-];
+import { skillRows, skillStats } from "@/data/skills";
+import "@/styles/Skills.css";
+
+function SkillRow({ label, skills }: { label: string; skills: string[] }) {
+  return (
+    <div className="skills-row reveal" data-delay="100">
+      <span className="skills-row__label">{label}</span>
+      <div className="skills-pills">
+        {skills.map((skill) => (
+          <span key={skill} className="skills-pill">
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Skills() {
+  const totalSkills = skillRows.reduce((n, row) => n + row.skills.length, 0);
+
   return (
     <section id="skills" className="py-24 relative bg-background">
       <div className="absolute top-0 left-0 right-0 h-px bg-border" />
 
       <div className="container px-4 md:px-8 relative">
-        {/* Header */}
-        <div className="text-center mb-16 reveal" data-delay="0">
+        <div className="text-center mb-12 reveal" data-delay="0">
           <p className="font-mono text-muted-foreground text-xs tracking-widest uppercase mb-3">
             Tech Stack
           </p>
@@ -48,47 +34,36 @@ export default function Skills() {
           </h2>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto">
-          {skillCategories.map((cat, i) => (
-            <div
-              key={cat.label}
-              className="reveal-scale rounded-2xl border border-border bg-card p-6 hover:border-foreground/30 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-              data-delay={i * 80}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-2xl">{cat.icon}</span>
-                <h3 className="font-bold text-foreground">{cat.label}</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {cat.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1 rounded-lg bg-muted text-muted-foreground text-xs font-mono hover:bg-foreground hover:text-background transition-all duration-150 cursor-default"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
+        <div className="skills-terminal reveal-scale" data-delay="80">
+          <p className="skills-terminal__prompt">~/hasaan $ cat skills.json</p>
+          <p>
+            <span className="skills-terminal__key">"count"</span>:{" "}
+            <span className="skills-terminal__value">{totalSkills}</span>,
+          </p>
+          <p>
+            <span className="skills-terminal__key">"focus"</span>:{" "}
+            <span className="skills-terminal__value">
+              "React · Next.js · React Native · Mobile Deployment"
+            </span>
+          </p>
+          <p>
+            <span className="skills-terminal__key">"status"</span>:{" "}
+            <span className="skills-terminal__value">"shipping to App Store & Play Store"</span>
+          </p>
+        </div>
+
+        <div className="skills-stack">
+          {skillRows.map((row) => (
+            <SkillRow key={row.label} label={row.label} skills={row.skills} />
           ))}
         </div>
 
-        {/* Stats */}
-        <div className="mt-16 max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-5 text-center">
-          {[
-            { value: "10+", label: "Production Apps", desc: "Shipped to App Store & Play Store" },
-            { value: "5+", label: "Companies", desc: "Remote & on-site experience" },
-            { value: "3.5", label: "CGPA", desc: "BS Software Engineering" },
-          ].map((stat, i) => (
-            <div
-              key={stat.label}
-              className="reveal-scale rounded-2xl border border-border bg-card p-6 hover:border-foreground/30 hover:shadow-lg transition-all duration-300"
-              data-delay={i * 100}
-            >
-              <div className="text-4xl font-bold text-foreground mb-1">{stat.value}</div>
-              <div className="font-semibold text-foreground text-sm">{stat.label}</div>
-              <div className="text-muted-foreground text-xs mt-1">{stat.desc}</div>
+        <div className="skills-stats">
+          {skillStats.map((stat, i) => (
+            <div key={stat.label} className="skills-stat reveal" data-delay={i * 100}>
+              <div className="skills-stat__value">{stat.value}</div>
+              <div className="skills-stat__label">{stat.label}</div>
+              <div className="skills-stat__desc">{stat.desc}</div>
             </div>
           ))}
         </div>

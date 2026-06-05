@@ -1,9 +1,11 @@
+import FeaturedProject from "@/components/FeaturedProject";
 import { ExternalLink, Globe, Smartphone, ChevronLeft, ChevronRight } from "lucide-react";
-import compositImg from "@/assets/project-composit.jpg";
-import kinnectImg from "@/assets/project-kinnect.jpg";
-import volunteerImg from "@/assets/project-volunteer.jpg";
-import melodicImg from "@/assets/project-melodic.jpg";
-import ebibleImg from "@/assets/project-ebible.jpg";
+import "@/styles/Projects.css";
+import compositImg from "@/assets/composit artboard.png";
+import kinnectImg from "@/assets/kinnect.png";
+import goodactsImg from "@/assets/Goodacts.png";
+import melodicImg from "@/assets/melodic minds.webp";
+import biblijaImg from "@/assets/biblja ks.webp";
 import judgedImg from "@/assets/project-judged.jpg";
 import gasioImg from "@/assets/project-gasio.jpg";
 import shopifyImg from "@/assets/project-shopify.jpg";
@@ -31,12 +33,12 @@ const projects: Project[] = [
     liveUrl: "https://composit.upvave.app/",
   },
   {
-    title: "Volunteer: Actify Now",
+    title: "GoodActs",
     description: "Community volunteering platform with AI-powered opportunity matching, real-time actions feed, and Liquid Glass UI design for iOS.",
-    image: volunteerImg,
+    image: goodactsImg,
     tags: ["React Native", "Expo Router", "Supabase", "OpenAI", "Reanimated"],
-    platforms: ["iOS"],
-    liveUrl: "https://apps.apple.com/",
+    platforms: ["iOS", "Android", "Web"],
+    liveUrl: "https://apps.apple.com/pk/app/goodacts/id6751082349",
   },
   {
     title: "Kinnect",
@@ -52,12 +54,12 @@ const projects: Project[] = [
     image: melodicImg,
     tags: ["React Native CLI", "Firebase", "OpenAI", "Stripe", "RevenueCat"],
     platforms: ["iOS"],
-    liveUrl: "https://apps.apple.com/",
+    liveUrl: "https://apps.apple.com/us/app/melodic-minds/id6753060420",
   },
   {
-    title: "eBible KS",
+    title: "Biblija KS",
     description: "Scripture reading and study app for iOS with bookmarking, notes, search, and offline access to Bible content.",
-    image: ebibleImg,
+    image: biblijaImg,
     tags: ["React Native", "iOS", "Firebase", "Offline Storage"],
     platforms: ["Android", "iOS"],
     liveUrl: "https://play.google.com/store/apps/details?id=com.ebiblija",
@@ -94,9 +96,6 @@ const projects: Project[] = [
   },
   
 ];
-
-const platformColor = (platform: PlatformTag) =>
-  "bg-white/80 text-foreground border-foreground/15 backdrop-blur-sm";
 
 const platformIcon = (platform: PlatformTag) => {
   if (platform === "iOS" || platform === "Android") return <Smartphone size={10} />;
@@ -181,6 +180,8 @@ export default function Projects() {
     <section id="projects" ref={sectionRef} className="py-24 relative bg-background overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-border" />
 
+      <FeaturedProject />
+
       {/* Header */}
       <div className="container px-4 md:px-8 mb-12">
         <div className="text-center reveal" data-delay="0">
@@ -188,10 +189,10 @@ export default function Projects() {
             My Work
           </p>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-            Featured <span className="text-gradient">Projects</span>
+            Other <span className="text-gradient">Projects</span>
           </h2>
           <p className="mt-4 text-muted-foreground max-w-xl mx-auto text-sm leading-relaxed">
-            A selection of apps and platforms — from AI-powered tools to production mobile apps
+            More apps and platforms — from AI-powered tools to production mobile apps
             on the App Store and Play Store.
           </p>
         </div>
@@ -240,64 +241,46 @@ export default function Projects() {
               <CardWrapper
                 key={`${project.title}-${index}`}
                 {...wrapperProps}
-                className="group relative rounded-2xl overflow-hidden border border-border bg-card hover:border-foreground/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer shrink-0 block no-underline text-inherit"
+                className="project-card group relative rounded-2xl overflow-hidden border border-border bg-card hover:border-foreground/40 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer shrink-0 block no-underline text-inherit"
                 style={{ width: `${cardWidth}px` }}
               >
-                {/* Image */}
-                <div className="relative overflow-hidden" style={{ height: "220px" }}>
+                <div className="project-card__media">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="project-card__image"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/20 to-transparent" />
+                  <div className="project-card__shade" />
 
-                  {/* Platform badges */}
-                  <div className="absolute top-3 left-3 flex gap-1.5">
+                  <div className="project-card__badges">
                     {project.platforms.map((p) => (
-                      <span
-                        key={p}
-                        className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full border text-xs font-medium ${platformColor(p)}`}
-                      >
+                      <span key={p} className="project-card__badge">
                         {platformIcon(p)}
                         {p}
                       </span>
                     ))}
                   </div>
 
-                  {/* Live link icon */}
                   {project.liveUrl && (
-                    <span className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/90 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-all duration-200 shadow-md pointer-events-none">
+                    <span className="project-card__link-btn">
                       <ExternalLink size={13} />
                     </span>
                   )}
-                </div>
 
-                {/* Content */}
-                <div className="p-5">
-                  <h3 className="font-bold text-base text-foreground mb-2 group-hover:text-foreground/80 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4 line-clamp-2">
-                    {project.description}
-                  </p>
-
-                  {/* Tech Tags */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tags.slice(0, 4).map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs font-mono group-hover:bg-foreground/8 transition-colors"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                    {project.tags.length > 4 && (
-                      <span className="px-2 py-0.5 rounded-md bg-muted text-muted-foreground text-xs font-mono">
-                        +{project.tags.length - 4}
-                      </span>
-                    )}
+                  <div className="project-card__content">
+                    <h3 className="project-card__title">{project.title}</h3>
+                    <p className="project-card__desc">{project.description}</p>
+                    <div className="project-card__tags">
+                      {project.tags.slice(0, 4).map((tag) => (
+                        <span key={tag} className="project-card__tag">
+                          {tag}
+                        </span>
+                      ))}
+                      {project.tags.length > 4 && (
+                        <span className="project-card__tag">+{project.tags.length - 4}</span>
+                      )}
+                    </div>
                   </div>
                 </div>
               </CardWrapper>
