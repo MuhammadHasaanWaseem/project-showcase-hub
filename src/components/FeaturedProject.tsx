@@ -146,16 +146,54 @@ function AssetRow({ section }: { section: AssetSection }) {
 }
 
 export default function FeaturedProject() {
+  const containerRef = useRef<HTMLDivElement>(null);
   const { title, logo, links, platforms, featureTags, tagline, description, assetSections } =
     steppalsProject;
 
+  useEffect(() => {
+    const els = containerRef.current?.querySelectorAll(".reveal, .reveal-scale");
+    if (!els?.length) return;
+
+    const show = (el: Element) => {
+      const node = el as HTMLElement;
+      const delay = node.dataset.delay ? parseInt(node.dataset.delay) : 0;
+      setTimeout(() => node.classList.add("visible"), delay);
+    };
+
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => {
+        if (e.isIntersecting) {
+          show(e.target);
+          obs.unobserve(e.target);
+        }
+      }),
+      { threshold: 0.05, rootMargin: "40px 0px" }
+    );
+
+    els.forEach((el) => obs.observe(el));
+
+    const checkInView = () => {
+      els.forEach((el) => {
+        const rect = (el as HTMLElement).getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.9 && rect.bottom > 0) show(el);
+      });
+    };
+
+    checkInView();
+    window.addEventListener("hashchange", checkInView);
+    return () => {
+      obs.disconnect();
+      window.removeEventListener("hashchange", checkInView);
+    };
+  }, []);
+
   return (
-    <div className="featured-project">
+    <div className="featured-project" ref={containerRef}>
       <div className="container px-4 md:px-8 mb-10">
         <div className="text-center reveal" data-delay="0">
-          <p className="font-mono text-muted-foreground text-xs tracking-widest uppercase">
-            Featured Project
-          </p>
+          <h2 className="featured-project__heading">
+            Featured <span className="text-gradient">Project</span>
+          </h2>
         </div>
       </div>
 

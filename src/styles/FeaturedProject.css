@@ -3,6 +3,28 @@
   margin-bottom: 5rem;
 }
 
+.featured-project__heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: hsl(var(--foreground));
+  line-height: 1.2;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .featured-project__heading {
+    font-size: 2.75rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .featured-project .reveal,
+  .featured-project .reveal-scale {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .featured-project__card {
   position: relative;
   border-radius: 1.5rem;
